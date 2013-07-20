@@ -1,0 +1,404 @@
+\documentclass[10pt,a4paper,twocolumn]{scrartcl}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[official]{eurosym}
+\usepackage[T1]{fontenc}
+
+%Tables with cells spanning multiple rows
+\usepackage{multirow}
+
+% Til at indsætte flot formateret kode:
+\usepackage{listings}
+%\usepackage{color}
+\usepackage[usenames,dvipsnames]{xcolor}
+
+\usepackage{lmodern}
+
+%Marginer:
+\usepackage[a4paper,
+			left=1.5cm,
+			right=1.5cm,
+			top=3cm,
+			bottom=3cm]{geometry}
+
+% Seperation between columns (default: 10pt)
+%\setlength{\columnsep}{15pt}
+
+%\usepackage{icomma}
+
+\usepackage{graphicx,epic,eepic}
+%\usepackage[pdftex]{graphicx}
+\usepackage{amssymb,amsmath}%,amsthm}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{verbatim} %man kan bruge \begin{comment}...\end{comment}
+\usepackage{mathtools} %mathclap kan benyttes til stackrel
+\usepackage{xspace}						% Add space after text macros with \xspace
+\usepackage{bm}
+
+%Kemiske formler: \ce{<formel>}
+\usepackage[version=3]{mhchem}
+
+\usepackage{siunitx}
+%\sisetup{separate-uncertainty}
+\sisetup{
+    separate-uncertainty=true,
+	list-separator = {\text{, }},
+    list-final-separator = {\text{, and }},
+    round-mode = figures,
+    round-precision = 3
+}
+
+
+%Flotte tabeller:
+\usepackage{array,booktabs}
+
+%\numberwithin{align}{section}
+
+%Caption laves anderledes:
+%\usepackage[font=small,labelfont={sf,bf},labelsep=space,width=.9\textwidth,indention=.5cm]{caption}
+\usepackage[format=plain,font=small,labelfont={sf,bf},labelsep=space,width=.9\textwidth]{caption}
+%\usepackage{caption}
+%\captionsetup{font=small, labelfont=bf}
+%\setlength{\captionmargin}{20pt}
+
+%flere figurer ved siden af hinanden:
+\usepackage{subfig}
+
+\usepackage{float}
+%\usepackage{fullpage}
+
+%overfull hbox under 3pt ignoreres:
+%\hfuzz=3pt
+
+%\newcommand{\e}{\mathrm{e}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\vf}{\varphi}
+\newcommand{\ve}{\varepsilon}
+\newcommand{\ul}{\underline}
+\newcommand{\dul}[1]{\underline{\underline{#1}}}
+\newcommand{\ph}{\phantom{}}
+\newcommand{\Ra}{\Rightarrow}
+\newcommand{\La}{\Leftarrow}
+\newcommand{\Lra}{\Leftrightarrow}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\nn}{\nonumber}
+\newcommand{\ol}{\overline}
+\newcommand{\mb}{\mathbf}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\mc}{\mathcal}
+\newcommand{\p}{\partial}
+\newcommand{\I}{\mathbf{i}}
+\newcommand{\J}{\mathbf{j}}
+\newcommand{\K}{\mathbf{k}}
+\newcommand{\pd}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\pdn}[3]{\frac{\partial^{#1} #2}{\partial {#3}^{#1}}}
+\newcommand{\pdc}[3]{\left(\frac{\partial #1}{\partial #2}\right)_{#3}}
+\newcommand{\pds}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\avg}[1]{\langle #1 \rangle}
+\newcommand{\GZ}{\mathscr{Z}}
+\newcommand{\fpe}{4\pi\varepsilon_0}
+\newcommand{\ifpe}{\frac{1}{4\pi\varepsilon_0}}
+\newcommand{\E}[1]{\cdot 10^{#1}}
+\newcommand{\phm}{\phantom{maple}}
+\newcommand{\un}[1]{\mathbf{\hat{#1}}}
+\newcommand{\us}[1]{\boldsymbol{\hat{#1}}}
+%\newcommand{\ns}{\setlength{\itemsep}{0cm}\setlength{\parskip}{0cm}}
+\newcommand{\ti}[1]{\tilde{#1}}
+\newcommand{\co}{\textup{count}}
+
+\newcommand{\ket}[1]{| #1 \rangle}
+\newcommand{\bra}[1]{\langle #1 |}
+\newcommand{\ip}[2]{\langle #1 | #2 \rangle}
+\newcommand{\expv}[3]{\langle #1 | #2 | #3 \rangle}
+
+
+%\renewcommand{\phi}{\varphi}
+%\renewcommand{\epsilon}{\varepsilon}
+
+\DeclareMathOperator{\id}{d\!}
+\DeclareMathOperator{\dx}{d}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\re}{Re}
+\DeclareMathOperator{\e}{e}
+\DeclareMathOperator{\dist}{dist}
+\DeclareMathOperator{\prob}{Prob}
+
+\let\oldvec\vec
+\renewcommand{\vec}[1]{\bm{\mathrm{#1}}}
+\newcommand{\psvec}[1]{\tilde{\vec{#1}}}
+\newcommand{\uvec}[1]{\hat{\vec{#1}}}
+\newcommand{\gvec}[1]{\oldvec{#1}}
+\newcommand{\mat}[1]{\bm{\mathrm{#1}}}
+\newcommand{\transpose}{^\mathsf{T}}
+\let\T\transpose
+
+\newcommand{\mean}[1]{\bar{#1}}
+\newcommand{\var}[1]{\sigma_{#1}^2}
+\newcommand{\width}[1]{\sigma_{#1}}
+\newcommand{\given}{\, | \,}
+\newcommand{\constant}{\text{const.}}
+\DeclarePairedDelimiter{\norm}{\lVert}{\rVert}
+
+% Text formatting
+\newcommand{\newterm}[1]{\textbf{#1}}
+\newcommand{\library}[1]{\textsf{#1}}
+\newcommand{\function}[1]{\texttt{#1}}
+\newcommand{\class}[1]{\textsf{#1}}
+\newcommand{\filename}[1]{\texttt{#1}}
+\newcommand{\variable}[1]{\textit{\texttt{#1}}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\eg}{e.g.\xspace}
+\newcommand{\ie}{i.e.\xspace}
+\newcommand{\shark}{\library{Shark}\xspace}
+\newcommand{\hl}[1]{{\color{Green!50!YellowGreen}#1}}
+
+%Horizontale tykke streger via \HRule (Bruges til forsiden):
+\newcommand{\HRule}{\rule{\textwidth}{1mm}}
+
+%Skillelinjer:
+\newcommand{\skillelinje}{\begin{center}\rule{0.9\textwitdh}{0.3mm}\end{center}}
+
+%Orddelinger. Brug "- i stedet for - i teksten, hvis der skal være en bindestreg i et ord.
+%\hyphenation{Maple-kom-man-do-en fer-mi-for-del-ings-funk-ti-on-en}
+
+%linjeafstand:
+\linespread{1.033}
+
+%Fjerner linjeafstanden i alle lister
+\usepackage{enumitem}
+\setlist{noitemsep}
+
+%FiXme-noter i margen:
+\usepackage[draft,english,marginclue,footnote]{fixme}
+
+%Laveste niveau i indholdsfortegnelse:
+\setcounter{tocdepth}{3}
+%Numereringsniveau:
+\setcounter{secnumdepth}{2}
+
+%Ingen indrykning ved nyt afsnit:
+%\parindent=0pt
+
+%Der vises labels i margin - bør kun anvendes i draft
+%\usepackage[notref,notcite]{showkeys}
+
+%Det sikres, at TOC (Table Of Contents) ikke selv er med i TOC, samt at litteraturlisten er med:
+\usepackage[nottoc]{tocbibind}
+
+%Klikbar indholdsfortegnelse m.m.
+\usepackage{hyperref}
+\hypersetup{colorlinks,
+  citecolor=black,
+  linkcolor=black,
+  urlcolor=black
+}
+
+%Include time of compilation:
+\usepackage{time}
+
+\usepackage[round,semicolon]{natbib}	% Natural science refereneces
+
+%Bedre citationer med BibTeX:
+\usepackage{cite}
+
+%Environment til at lave citater med engelsk orddeling
+%\newenvironment{engquote}%
+%	{\begin{quote}\selectlanguage{english}\small}%
+%	{\end{quote}\selectlanguage{danish}}
+
+%New quote environment
+\renewenvironment{quote}%
+	{\begin{quote}\small}%
+	{\end{quote}}
+
+\newcommand{\question}[1][]{
+	\ifthenelse{\isempty{#1}}
+	{\section{}}
+	{\section{#1}}
+}
+
+%fancyhdr - sidehoved og sidefod
+\usepackage{lastpage}
+%\usepackage{fancyhdr}
+%%\pagestyle{empty}
+%\pagestyle{fancy}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\pagestyle{fancy}
+
+%Indholdet af sidehoved og sidefod:
+%\renewcommand{\headheight}{14.5pt} %er obligatorisk v. fancyhdr
+\renewcommand{\headrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{0.5pt}
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+%\lhead{\rightmark} 
+%\lhead{\textsc{Optisk spektrum af natrium-atomet}} 
+%\rhead{\textsc{Den kopernikanske revolution}}
+%\lfoot{bla}
+%\cfoot{Side \thepage\ af \pageref{LastPage}}
+%\rfoot{bla}
+
+\newcommand{\doctitle}{Notes on Scientific Writing}
+%\newcommand{\assignment}{Exam Assignment}
+
+\fancyhf{}
+\fancyhead[L]{\textit{\doctitle}} 
+%\fancyhead[R]{\textsc{\coursename}}
+\fancyfoot[C]{Page \thepage\ of \pageref{LastPage}}
+
+\title{\doctitle}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Criteria for Effective Writing}
+\begin{description}
+    \item[Clear] Reader gets the message
+    \item[Complete] Reader's questions are answered
+    \item[Correct] Message is accurate
+    \item[Concise] Saves reader time
+\end{description}
+
+\section{Coherence}
+\emph{Coherence} refers to the logical sequence of sentences within a paragraph. 
+
+Make sure it is clear\dots
+\begin{itemize}
+    \item \dots where did it come from?
+    \item \dots where is it going?
+\end{itemize}
+
+\subsection{How to Improve Coherence}
+\begin{itemize}
+    \item Put similar topics together.
+        \begin{itemize}
+            \item Go through the text, identify the theme of each paragraph and colour code them in the margin with a marker.
+            \item Collect similar paragraph.
+            \item Rewrite/delete repeating text.
+        \end{itemize}
+        
+    \item Discuss \emph{one} idea within a paragraph.
+    \item State the idea in a ``topic sentence''.
+    \item Put topic sentence \emph{first} in the paragraph.
+        \begin{itemize}
+            \item \emph{Example:} ``Bees spread pollen\dots'' (paragraph about bees); ``Pollen is spread by bees\dots'' (paragraph about pollen).
+        \end{itemize}
+        
+    \item Use \emph{new-old construction} -- repetition can be good!
+        \begin{itemize}
+            \item Move $A \ra C$ by going $A \ra B$ and then $B \ra C$.
+            \item Start the sentence $\ra$ introduce the \emph{new} thing. Period. Start with the now \emph{old} thing $\ra$ go to the end.
+            \item That is, end with the \emph{new}, start with the \emph{old}.
+            \item \emph{Example:} ``Before analysis, the images are \emph{segmented}. The \emph{segmentation} involves\dots''
+        \end{itemize}
+        
+    \item Be \emph{consistent} in your style.
+        \begin{itemize}
+            \item Use the same \emph{word} for the same idea. E.g.\ decide on either \emph{experiment, trial, study} etc.
+            \item Use same \emph{organisational pattern} for successive sentences and paragraphs.
+        \end{itemize}
+        
+    \item Use \emph{parallel structure}.
+        \begin{itemize}
+            \item Balance nouns with nouns, (ad)verbs wit (ad)verbs, prepositions with prepositions.
+            \item Use copy and past -- it is \emph{not} easier for the reader if you vary the construction!
+                \begin{description}
+                    \item[Example] For subset 1, RMSE {\color{blue!80}was} {\color{Green!80}less} {\color{BrickRed!80}for} class A {\color{Purple!80}when} $\theta < 1$ {\color{Green!80}than} {\color{Purple!80}when} $\theta > 1$, {\color{Orange!80}whereas} training time {\color{blue!80}was} {\color{Green!80}faster} {\color{BrickRed!80}for} class A {\color{Purple!80}when} $\theta < 1$ {\color{Green!80}than} {\color{Purple!80}when} $\theta > 1$.
+
+                    For subset 2, {\color{Orange!80}however}, RMSE {\color{blue!80}was} {\color{Green!80}greater} {\color{BrickRed!80}for} class A {\color{Purple!80}when} $\theta < 1$ {\color{Green!80}than} {\color{Purple!80}when} $\theta > 1$, {\color{Orange!80}whereas} training time {\color{blue!80}was} {\color{Green!80}slower} {\color{BrickRed!80}for} class A {\color{Purple!80}when} $\theta < 1$ {\color{Green!80}than} {\color{Purple!80}when} $\theta > 1$.
+                \end{description}
+                
+        \end{itemize}
+        
+\end{itemize}
+
+\section{Structure}
+\subsection{Title}
+The title should tell what the paper is about!
+\begin{description}
+    \item[Informative] Describe the research. Avoid jargon.
+    \item[Specific] Differentiate the research from other research on the subject. Use specific words, not broad ones.
+    \item[Concise] Say only what is necessary -- use 7 to 10 words. Use most important words related to topic.
+\end{description}
+
+\subsubsection*{Guidelines}
+\begin{itemize}
+    \item The title should be \emph{descriptive}, not \emph{declarative}:
+        \begin{description}
+            \item[Descriptive] Tells the reader the \emph{objective} of the research.
+            \item[Declarative] Tells the reader the \emph{results} or \emph{conclusion} of the research.
+        \end{description}
+
+    \item Avoid waste words:
+        \begin{itemize}
+            \item Observations of\dots
+            \item Studies of\dots
+            \item Investigations of\dots
+            \item Examination of\dots
+            \item Research on\dots
+            \item Note about\dots
+            \item Preliminary study of\dots
+        \end{itemize}
+    \item Avoid abbreviations and acronyms.
+    \item Avoid catchy or sexy titles.
+    \item Minimize punctuation (commas and colons are OK).
+\end{itemize}
+
+\subsection{Abstract}
+\begin{itemize}
+    \item Make the abstract stand alone.
+        \begin{itemize}
+            \item No bibliographic references.
+            \item No references to tables, figures, or text.
+            \item Limited use of abbreviations. If it is not a ``standard'' abbreviation, it should be defined at first use.
+        \end{itemize}
+        
+    \item Make it informative, not indicative:
+        \begin{description}
+            \item[Informative] States objectives or aim, summarises methods and results, and supports conclusion with data. Makes the reader want to read your paper because it \emph{is} interesting.
+            \item[Indicative] Indicates objectives of the research and suggest results in general terms (``Results suggest that the method improved the performance.'') Makes the reader want to read your paper because it \emph{might} interesting.
+        \end{description}
+\end{itemize}
+
+\subsubsection*{Guidelines}
+\begin{itemize}
+    \item Structure:
+        \begin{itemize}
+            \item Start with motivation, if space allows.
+            \item Clearly state objective, aim, or purpose.
+            \item Describe essential methods.
+            \item Summarize important results.
+            \item End with important conclusions and impact.
+        \end{itemize}
+
+    \item Be clear, specific and concise!
+    \item Use \emph{copy and paste}!
+        \begin{itemize}
+            \item Ensures consistent style and organization.
+            \item No contradiction between text and abstract.
+        \end{itemize}
+        
+\end{itemize}
+
+
+\section{General Recommendations}
+\subsection{Verb Tenses for Papers}
+\begin{description}
+    \item[Motivation] Present.
+    \item[Literature] Past or present perfect (``Studies have shown that\dots'').
+    \item[Objective] Past.
+    \item[Methods] Past.
+    \item[Results and Discussion] Past/present (``Training time \hl{was} faster \dots, which \hl{suggests}\dots'').
+    \item[Conclusions] Present.
+\end{description}
+
+
+
+\end{document}
